@@ -2,6 +2,8 @@ import './globals.css'
 import Providers from './Providers'
 import ConnectWallet from '@/components/ConnectWallet'
 
+
+
 export const metadata = {
   title: 'Blockchat',
   description: 'Anonymous Blockchain Messaging App',
@@ -14,8 +16,7 @@ export default function RootLayout({ children }) {
       <body >
       <ConnectWallet />
       {children}
-      </body>
-      
+      </body>   
      </Providers>
     </html>
   )

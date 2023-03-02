@@ -1,0 +1,13 @@
+{
+  "projects": {
+    "default": "blockchat-10f19"
+  },
+  "targets": {},
+  "etags": {
+    "blockchat-10f19": {
+      "extensionInstances": {
+        "moralis-auth": "fde6125ac9f1975c708eeffa725062d3eec97c605a8ed8f7f5502fc7f05f8b89"
+      }
+    }
+  }
+}

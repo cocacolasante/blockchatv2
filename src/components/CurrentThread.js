@@ -1,5 +1,11 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react";
+import firebase from "firebase/app";
+import "firebase/firestore";
+
+
+
+  
 
 const CurrentThread = () => {
     const [reply, setReply] = useState("Send Message")

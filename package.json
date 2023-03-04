@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.8.1",
+    "@react-query-firebase/analytics": "^0.1.2-alpha.0",
+    "@react-query-firebase/database": "^1.0.0-dev.2",
     "date-fns": "^2.29.3",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.3",

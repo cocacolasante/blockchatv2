@@ -1,8 +1,9 @@
 import { initializeApp } from "firebase/app";
-import { getDocs } from "firebase/firestore";
+import { getDocs, getFirestore } from "firebase/firestore";
 import {  getDatabase, collection, where, onValue } from "firebase/database"
 import {ref, child, get, set, push, update, query, orderByChild } from "firebase/database";
 import firebase from "firebase/app";
+import MessagePreviewCard from "@/components/MessagePreviewCard";
 
 
 const firebaseConfig = {
@@ -18,6 +19,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 
 const db = getDatabase(app);
+
+
 
 export function addUserToDb(userId) {
     
@@ -42,12 +45,9 @@ export function getListOfMessage(activeAccount){
 
             const childData = childSnapshot.val();
 
-            const messageStruct = {
-                id: childKey,
-                message: childData
-            }
+            console.log(childData)
+
             
-            output.push(messageStruct)
             
         });
         
@@ -57,24 +57,26 @@ export function getListOfMessage(activeAccount){
 }
 
 
-export function newSendfunction(to, from, message, uid){
+export function newSendfunction(to, from, message){
     
     const sentRef = ref(db, `users/${from}/messages/sent/`);
     const newPostRef = push(sentRef);
 
     const receivedRef =ref(db, `users/${to}/messages/received/`);
     const newReceivedRef = push(receivedRef);
+
+    const newReceivedKey = push(child(ref(db), `users/${to}/messages/received/`)).key;
+    const newSentKey = push(child(ref(db), `users/${from}/messages/sent/`)).key;
+
     set(newPostRef, {
         to: to,
         body: message,
-        createdAt: getTimestampInSeconds(),
-        uid: uid
+        createdAt: getTimestampInSeconds(),        
     });
     set(newReceivedRef, {
         from: from,
         body: message,
-        createdAt: getTimestampInSeconds(),
-        uid: uid
+        createdAt: getTimestampInSeconds(),        
     });
 
 }

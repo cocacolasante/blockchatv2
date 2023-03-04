@@ -49,7 +49,7 @@ const CurrentThread = () => {
     }
     
   return (
-    <div className='flex justify-center w-full bg-gray pb-36'>
+    <div className='flex justify-center w-[75%] bg-gray pb-36'>
         <h1 className=''>Current Thread</h1>
         
         <form className="absolute bottom-0 m-auto" onSubmit={e=>handleSendMessage(e)}>

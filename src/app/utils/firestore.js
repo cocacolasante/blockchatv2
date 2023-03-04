@@ -1,6 +1,9 @@
 import { initializeApp } from "firebase/app";
-import {  getDatabase } from "firebase/database"
-import {ref, child, get, set, push, update } from "firebase/database";
+import { getDocs } from "firebase/firestore";
+import {  getDatabase, collection, where, onValue } from "firebase/database"
+import {ref, child, get, set, push, update, query, orderByChild } from "firebase/database";
+import firebase from "firebase/app";
+
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_firestore_apiKey,
@@ -24,29 +27,35 @@ export function addUserToDb(userId) {
     });
 }
 
-export function sendMessage(to, from, message, uid) {
-    
-  
-    // A post entry.
-    const postData = {
-      to: to,
-      body: message,
-      uid
-    };
-  
-    // Get a key for a new Post.
-    const newMessageKey = push(child(ref(db), 'message')).key;
-  
-    // adding sent messages to the senders db profile
-    const updates = {};
-    updates['/users/' + from + "/" + "messages/" + "sent/" + newMessageKey ] = postData;
-
-    updates['/users/' + to + "/" + "messages/" + "received/" + newMessageKey ] = postData;
-    
-  
-    
-    return update(ref(db), updates)
+function getTimestampInSeconds () {
+    return Math.floor(Date.now() / 1000)
 }
+
+export function getListOfMessage(activeAccount){
+    const receivedMesRef = ref(db, `users/${activeAccount}/messages/received`)
+
+    onValue(receivedMesRef, (snapshot) => {
+        let output =[]
+        
+        snapshot.forEach((childSnapshot) => {
+            const childKey = childSnapshot.key;
+
+            const childData = childSnapshot.val();
+
+            const messageStruct = {
+                id: childKey,
+                message: childData
+            }
+            
+            output.push(messageStruct)
+            
+        });
+        
+        return output
+    });
+      
+}
+
 
 export function newSendfunction(to, from, message, uid){
     
@@ -58,11 +67,13 @@ export function newSendfunction(to, from, message, uid){
     set(newPostRef, {
         to: to,
         body: message,
+        createdAt: getTimestampInSeconds(),
         uid: uid
     });
     set(newReceivedRef, {
         from: from,
         body: message,
+        createdAt: getTimestampInSeconds(),
         uid: uid
     });
 
@@ -73,7 +84,7 @@ export const checkDbForUser = (account) =>{
   get(child(dbRef, `users/${account}`)).then((snapshot) => {
       if (snapshot.exists()) {
         console.log(snapshot.val());
-        console.log("User exists")
+        
         return true
       } else {
         console.log("No data available");

@@ -52,7 +52,7 @@ const ConnectWallet = () => {
             const accounts = await ethereum.request({method: "eth_accounts"})
             if(accounts.length !== 0 ){
                 setActiveAccount(accounts[0]);
-                console.log(`connected to ${accounts[0]}`)
+                
                 
                 
                 router.push(`/chat`)

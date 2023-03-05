@@ -1,17 +1,28 @@
+// "use client"
 import MessagePreviewContainer from "./MessagePreviewContainer"
-import { getListOfMessage } from "@/app/utils/firestore"
+import SentMessagePreview from "./SentMessagePreview"
+import Link from "next/link"
+import { useAccountContext } from "@/context/accountContext"
+import MessagePrevClient from "./MessagePrevClient"
 
-const fetchUserMessages =  () =>{
-  return getListOfMessage("0x4b2abf635f824e3419e524200f34148d30ee5876")
-}
+
+
 
 const Sidebar = () => {
+
   
+
   
   return (
-    <div className='flex flex-col flex-1 h-screen'>
-        <h2 className=''>Sidebar</h2>
-        <MessagePreviewContainer  />
+    <div className='flex flex-col flex-1 h-screen border border-gray-600 rounded-md'>
+        <div className="flex justify-center space-x-3">
+          <button className="bg-gray-400 border border-gray-500 rounded-md " onClick={null}>Inbox</button>
+          <Link href={`/chat/sent`}>
+          Sent
+          </Link>
+        </div>
+       <MessagePreviewContainer  />
+        
     </div>
   )
 }

@@ -44,7 +44,7 @@ const CurrentThread = () => {
         console.log("sending message")
         
         // add dynamic to variable
-        newSendfunction("0x4b2abf635f824e3419e524200f34148d30ee5876", activeAccount, reply, activeAccount)
+        newSendfunction("0x542618ad279e0b5f7ef1f02b8061a7ad58c02d7b", activeAccount, reply, activeAccount)
         setReply("Send Message")
     }
     

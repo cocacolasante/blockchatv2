@@ -4,6 +4,7 @@ import SentMessagePreview from "./SentMessagePreview"
 import Link from "next/link"
 import { useAccountContext } from "@/context/accountContext"
 import MessagePrevClient from "./MessagePrevClient"
+import MessClientContainer from "./MessClientContainer"
 
 
 
@@ -21,7 +22,7 @@ const Sidebar = () => {
           Sent
           </Link>
         </div>
-       <MessagePreviewContainer  />
+       <MessClientContainer />
         
     </div>
   )

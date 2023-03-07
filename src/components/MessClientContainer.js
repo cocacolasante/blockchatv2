@@ -27,6 +27,8 @@ const MessClientContainer = () => {
     useEffect(()=>{
         checkIfWalletIsConnected()
     },[])
+
+    
   return (
     <div>
     {activeAccount && (<MessagePrevClient activeAccount={activeAccount} />)}

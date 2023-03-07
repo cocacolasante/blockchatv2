@@ -6,9 +6,15 @@ const MessagePreviewContainer = async ({account}) => {
 
   
 
-  const messages = await fetch(`https://blockchat-10f19-default-rtdb.firebaseio.com/users/${account}/messages/received.json`)
-
+  const messages = await fetch(`https://blockchat-10f19-default-rtdb.firebaseio.com/users/0x4B2AbF635f824e3419E524200f34148D30Ee5876/messages/received.json`)
+  
   const data = await messages.json()
+  if(!data){
+    return(
+      <p>No Messages</p>
+    )
+  }
+  console.log(data)
 
   let jsonArr = Object.values(data)
 

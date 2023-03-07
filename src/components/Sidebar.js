@@ -1,4 +1,4 @@
-// "use client"
+
 import MessagePreviewContainer from "./MessagePreviewContainer"
 import SentMessagePreview from "./SentMessagePreview"
 import Link from "next/link"
@@ -9,10 +9,11 @@ import MessClientContainer from "./MessClientContainer"
 
 
 
+
 const Sidebar = () => {
 
   
-
+  
   
   return (
     <div className='flex flex-col flex-1 h-screen border border-gray-600 rounded-md'>
@@ -22,7 +23,7 @@ const Sidebar = () => {
           Sent
           </Link>
         </div>
-       <MessClientContainer />
+       <MessClientContainer  />
         
     </div>
   )

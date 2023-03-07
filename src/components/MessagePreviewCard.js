@@ -1,6 +1,8 @@
 import Link from "next/link"
 
 const MessagePreviewCard = ({from, text, timestamp, urlLink }) => {
+
+  
   return (
     <Link className="m-auto border border-gray-500 rounded-md hover:shadow-md hover:underline w-[90%]" href={`/chat/message/${urlLink}`}>
       <div className=''>

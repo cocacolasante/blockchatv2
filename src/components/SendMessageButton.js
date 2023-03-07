@@ -39,8 +39,8 @@ const SendMessageButton = ({activeAccount, }) => {
 
     const handleInputValidation = (e) =>{
         e.preventDefault()
-        let toAddy = e.target.value
-        toAddy = toAddy.toString()
+        let toAddy = e.target.value.toString()
+        
         
         setToAddress(toAddy)
     }

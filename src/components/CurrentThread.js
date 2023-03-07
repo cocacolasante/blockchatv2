@@ -3,12 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { newSendfunction } from "@/app/utils/firestore";
+import SendMessageButton from "./SendMessageButton";
 
 
   
 
 const CurrentThread = () => {
-    const [reply, setReply] = useState("Send Message")
     const [activeAccount, setActiveAccount] = useState()
 
 
@@ -39,26 +39,13 @@ const CurrentThread = () => {
         checkIfWalletIsConnected()
     },[])
 
-    const handleSendMessage = (e) =>{
-        e.preventDefault()
-        console.log("sending message")
-        
-        // add dynamic to variable
-        newSendfunction("0x542618ad279e0b5f7ef1f02b8061a7ad58c02d7b", activeAccount, reply, activeAccount)
-        setReply("Send Message")
-    }
+
     
   return (
     <div className='flex justify-center w-[75%] bg-gray pb-36'>
         <h1 className=''>Current Thread</h1>
         
-        <form className="absolute bottom-0 m-auto" onSubmit={e=>handleSendMessage(e)}>
-            <div className="flex">
-                
-                <input className="w-full" onChange={e=>setReply(e.target.value)} placeholder={reply}/>
-                <button onClick={e=>handleSendMessage(e)} type="submit" >Send Message</button>
-            </div>
-        </form>
+       <SendMessageButton activeAccount={activeAccount} />
             
     
     </div>

@@ -59,6 +59,7 @@ export function getListOfMessage(activeAccount){
 
 export function newSendfunction(to, from, message){
     
+    
     const sentRef = ref(db, `users/${from}/messages/sent/`);
     const newPostRef = push(sentRef);
 

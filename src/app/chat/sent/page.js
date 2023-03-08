@@ -1,5 +1,5 @@
 
-import SentMessagePreview from "@/components/SentMessagePreview"
+import SentMessagePreview from "@/components/sentcomponents/SentMessagePreview"
 
 const page = () => {
   return (

@@ -2,6 +2,7 @@
 import DarkModeSwitch from "./DarkModeSwitch"
 import {useRouter} from "next/navigation"
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 import db, {addUserToDb, checkDbForUser} from "@/app/utils/firestore";
 
@@ -35,10 +36,10 @@ const ConnectWallet = () => {
                 
                 if(!checkDbForUser(accounts[0])){
                     addUserToDb(account)
+                    router.push(`/chat`)
                 }
 
                 
-                router.push(`/chat`)
             }
 
 
@@ -58,7 +59,7 @@ const ConnectWallet = () => {
             if(accounts.length !== 0 ){
                 setActiveAccount(accounts[0]);
                 
-                router.push(`/chat`)
+                router.push(`/chat/`)
                 
             }else{
                 router.push(`/`)
@@ -77,7 +78,7 @@ const ConnectWallet = () => {
     
   return (
     <div className='flex justify-end mt-6 mr-10 space-x-4 '>
-        {!activeAccount ? <button className="w-48 transition-shadow bg-gray-400 rounded-full hover:underline hover:shadow-lg" onClick={connectWallet}><span className="">Connect Wallet</span> </button> : <p className="transition-shadow hover:underline hover:shadow">{activeAccount.slice(0,4)}...{activeAccount.slice(-6)}</p>}
+        {!activeAccount ? <button className="w-48 transition-shadow bg-gray-400 rounded-full hover:underline hover:shadow-lg" onClick={connectWallet}><span className="">Connect Wallet</span> </button> : <Link href={`/chat/profile`} className="transition-shadow hover:underline hover:shadow">{activeAccount.slice(0,4)}...{activeAccount.slice(-6)}</Link>}
         <DarkModeSwitch />
         
     </div>

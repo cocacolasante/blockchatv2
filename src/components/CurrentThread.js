@@ -2,8 +2,9 @@
 import { useEffect, useRef, useState } from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import { newSendfunction } from "@/app/utils/firestore";
+import Link from "next/link";
 import SendMessageButton from "./SendMessageButton";
+import SentMessageContainer from "./sentcomponents/SentMessContainer";
 
 
   
@@ -42,8 +43,12 @@ const CurrentThread = () => {
 
     
   return (
-    <div className='flex justify-center w-[75%] bg-gray pb-36'>
-        <h1 className=''>Current Thread</h1>
+    <div className='text-center w-[50%] bg-gray pb-36 border border-gray-600 rounded-md'>
+        <Link className="" href={`/chat/sent`}>
+            Sent
+        </Link>
+
+        <SentMessageContainer />
         
        <SendMessageButton activeAccount={activeAccount} />
             

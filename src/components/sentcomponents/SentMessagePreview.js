@@ -10,7 +10,7 @@ const SentMessagePreview = ({activeAccount}) => {
 
     const fetchMessaged = async () =>{
         
-        const messages = await fetch(`https://blockchat-10f19-default-rtdb.firebaseio.com/users/${activeAccount}/messages/received.json`)
+        const messages = await fetch(`https://blockchat-10f19-default-rtdb.firebaseio.com/users/${activeAccount}/messages/sent.json`)
         
         const data = await messages.json()
         
@@ -50,7 +50,7 @@ const SentMessagePreview = ({activeAccount}) => {
     <div className="flex flex-col pl-4 space-y-3">
       {inboxMessages && inboxMessages.map((message)=>{
         return(
-          <MessagePreviewCard key={message.key} urlLink={message.key} from={message.from} text={message.body} timestamp={message.createdAt} />
+          <MessagePreviewCard key={message.key} urlLink={message.key} from={message.to} text={message.body} timestamp={message.createdAt} />
         )
       })}
      

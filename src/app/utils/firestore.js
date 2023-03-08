@@ -71,10 +71,12 @@ export function newSendfunction(to, from, message){
 
     set(newPostRef, {
         to: to,
+        from: from,
         body: message,
         createdAt: getTimestampInSeconds(),        
     });
     set(newReceivedRef, {
+        to: to,
         from: from,
         body: message,
         createdAt: getTimestampInSeconds(),        

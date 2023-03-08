@@ -25,9 +25,14 @@ const ConnectWallet = () => {
             const accounts = await ethereum.request({method:"eth_requestAccounts"})
             if(accounts.length !== 0 ){
                 setActiveAccount(accounts[0]);
-                console.log(`connected to ${activeAccount}`)
-                const account = accounts[0]
+                
+                
+                const account = accounts[0].toString().toLowerCase()
+                
+                
                 setActiveAccount(account)
+                
+                
                 if(!checkDbForUser(accounts[0])){
                     addUserToDb(account)
                 }

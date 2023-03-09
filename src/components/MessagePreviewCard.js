@@ -1,9 +1,10 @@
 import Link from "next/link"
 
 const MessagePreviewCard = ({from, text, timestamp, urlLink }) => {
-
-  const date = new Date(timestamp)
+  const epochtime = timestamp * 1000
+  const date = new Date(epochtime )
   const dateFormat = date.getHours() + ":" + date.getMinutes() + ", "+ date.toDateString(); 
+ 
   
   return (
     <Link className="m-auto border border-gray-500 rounded-md hover:shadow-md hover:underline w-[90%]" href={`/chat/message/${urlLink}`}>

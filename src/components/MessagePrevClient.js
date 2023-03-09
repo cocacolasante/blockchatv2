@@ -49,6 +49,7 @@ const MessagePrevClient = ({activeAccount}) => {
   return (
     <div className="flex flex-col pl-4 space-y-3">
       {inboxMessages && inboxMessages.map((message)=>{
+        
         return(
           <MessagePreviewCard key={message.key} urlLink={message.key} from={message.from} text={message.body} timestamp={message.createdAt} />
         )

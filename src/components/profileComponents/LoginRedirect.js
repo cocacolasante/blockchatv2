@@ -4,6 +4,7 @@ import { ethers } from "ethers";
 import { PROFILEADDRESS } from "@/app/utils/Addresses";
 import profileAbi from "../../app/utils/abis/ProfileAbi.json"
 import LoginPage from "./LoginPage";
+import ProfilePage from "./ProfilePage";
 
 
 const LoginRedirect = () => {
@@ -51,7 +52,7 @@ const LoginRedirect = () => {
 
   return (
     <div>
-        {hasProfile ? <p>profile Found</p> : <LoginPage /> }
+        {hasProfile ? <ProfilePage /> : <LoginPage /> }
     </div>
   )
 }

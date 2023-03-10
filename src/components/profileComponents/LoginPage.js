@@ -17,21 +17,33 @@ const LoginPage = () => {
 
        let txn = await ProfileContract.createProfile(username);
        let res = await txn.wait()
+       console.log(res)
 
        if(res.status === 1){
-        router.push("/chat/profile")
-        
-       }else{
-        alert("failed")
-       }
+           console.log("success")
+           
+        }else{
+            alert("failed")
+        }
+        router.push("/chat/")
     }
 
   return (
-    <form onSubmit={createProfile}>
-        <input placeholder={username} onChange={e=>setUsername(e.target.value)} />
-        <button type="submit" onClick={createProfile} >Create Profile</button>
+    <div className="flex items-center justify-center h-screen my-auto ">
+        <div className="flex flex-col justify-center text-center align-middle border border-gray-400 rounded-3xl h-96 w-96 bg-neutral-800" >
+            <h2 className="pb-10 text-lg">Create Profile</h2>
+            <p className="pb-10 text-sm">Create your unique annonymous profile with only a username and metamask account</p>
+            <form onSubmit={createProfile}>
+                <input className="text-black bg-white" placeholder={username} onChange={e=>setUsername(e.target.value)} />
+                <div className="">
+                    
+                    <button className="text-black bg-gray-500 border border-gray-500" type="submit" onClick={createProfile} >Create Profile</button>
+                </div>
 
-    </form>
+            </form>
+            
+        </div>
+    </div>
   )
 }
 

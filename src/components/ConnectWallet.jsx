@@ -79,7 +79,10 @@ const ConnectWallet = () => {
   return (
     <>
     <div className="text-4xl font-bold text-center">
+        <Link href={`/chat`}>
+            
         <h1>Blockchat</h1>
+        </Link>
     </div>
         
     <div className='flex justify-end mt-6 mr-10 space-x-4 '>

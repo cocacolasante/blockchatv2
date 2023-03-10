@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { PROFILEADDRESS } from "@/app/utils/Addresses";
 import profileAbi from "../../app/utils/abis/ProfileAbi.json"
+import FetchUsersNFTs from "./FetchUsersNFTs";
+import DisplayUsersContacts from "./DisplayUsersContacts";
 
 const ProfilePage = () => {
     const [activeAccount, setActiveAccount] = useState()
@@ -87,9 +89,13 @@ const ProfilePage = () => {
     const displayProfile = () =>{
 
         return(
-            <div>
-                <h1>{username}</h1>
+            <div className="pt-6">
+                <h1 className="">{username}</h1>
                 {!status ? setStatusInput() : <p>{status}</p> }
+
+                <DisplayUsersContacts account={activeAccount} />
+
+                <FetchUsersNFTs account={activeAccount} />
             </div>
         )
     }

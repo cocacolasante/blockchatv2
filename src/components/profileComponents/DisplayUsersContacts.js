@@ -6,6 +6,7 @@ import profileAbi from "../../app/utils/abis/ProfileAbi.json"
 import AddToContacts from "./AddToContacts";
 
 const DisplayUsersContacts = ({account}) => {
+    const [activeAccount, setActiveAccount] = useState()
 
     const [contactList, setContactList] = useState()
 
@@ -34,16 +35,29 @@ const DisplayUsersContacts = ({account}) => {
         checkIfWalletIsConnected()
     }, [])
 
-    const getContactList = async (account) =>{
+    const getContactList = async (newAccount) =>{
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const ProfileContract = new ethers.Contract(PROFILEADDRESS, profileAbi.abi, provider)
 
-        const usersContacts = await ProfileContract.returnContactList(account)
-        if(usersContacts.lenght > 0){
-            setContactList(usersContacts)
+        const usersContacts = await ProfileContract.returnContactList(newAccount)
+        console.log(usersContacts)
+        
+        setContactList(usersContacts)
 
-        }
 
+    }
+
+    const displayContactList = () =>{
+        
+        
+        return contactList.map((contact, i) =>{
+            console.log(contact)
+            
+            return(
+                <p key={i}>{contact}</p>
+            )
+        })
+        
     }
 
 
@@ -51,6 +65,7 @@ const DisplayUsersContacts = ({account}) => {
     <div className="pt-10 ">
         <AddToContacts account={account} />
         <h2>Current Contacts</h2>
+        {contactList && displayContactList()}
     </div>
   )
 }

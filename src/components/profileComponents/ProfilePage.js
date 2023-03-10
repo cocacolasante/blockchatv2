@@ -45,7 +45,7 @@ const ProfilePage = () => {
         const ProfileContract = new ethers.Contract(PROFILEADDRESS, profileAbi.abi, provider)
 
         const currentUserStruct = await ProfileContract.users(account);
-        console.log(currentUserStruct)
+
 
         setUsername(currentUserStruct.username)
         if(currentUserStruct.status !== ""){

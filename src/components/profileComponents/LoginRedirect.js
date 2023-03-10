@@ -3,13 +3,12 @@ import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { PROFILEADDRESS } from "@/app/utils/Addresses";
 import profileAbi from "../../app/utils/abis/ProfileAbi.json"
+import LoginPage from "./LoginPage";
 
-const ProfilePage = () => {
+
+const LoginRedirect = () => {
     const [activeAccount, setActiveAccount] = useState()
-
-    const [username, setUsername] = useState()
-    const [status, setStatus] = useState()
-    const [nftImgUrl, setNftImgUrl] = useState()
+    const [hasProfile, setHasProfile] = useState(false)
 
     const checkIfWalletIsConnected = async () =>{
         try{
@@ -22,7 +21,7 @@ const ProfilePage = () => {
             if(accounts.length !== 0 ){
                 setActiveAccount(accounts[0]);
                 
-                
+                checkIfProfileExists(accounts[0])
                 
             }
             
@@ -32,11 +31,17 @@ const ProfilePage = () => {
         }
     }
 
-    const getProfileInfo = async () =>{
+    const checkIfProfileExists = async (account) =>{
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const ProfileContract = new ethers.Contract(PROFILEADDRESS, profileAbi.abi, provider)
 
-        const currentUserStruct = await ProfileContract.users(activeAccount);
+        const currentUserStruct = await ProfileContract.users(account);
+        console.log(currentUserStruct)
+
+        if(currentUserStruct.username !== ""){
+            setHasProfile(true)
+        }
+
         
     }
 
@@ -44,22 +49,11 @@ const ProfilePage = () => {
         checkIfWalletIsConnected()
     }, [])
 
-    const displayProfile = () =>{
-
-        return(
-            <div>
-
-            </div>
-        )
-    }
-
-
   return (
     <div>
-    {activeAccount && (<h1>{activeAccount}</h1>)}
-        
+        {hasProfile ? <p>profile Found</p> : <LoginPage /> }
     </div>
   )
 }
 
-export default ProfilePage
+export default LoginRedirect

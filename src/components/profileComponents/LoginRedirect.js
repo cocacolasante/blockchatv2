@@ -37,7 +37,7 @@ const LoginRedirect = () => {
         const ProfileContract = new ethers.Contract(PROFILEADDRESS, profileAbi.abi, provider)
 
         const currentUserStruct = await ProfileContract.users(account);
-        console.log(currentUserStruct)
+        
 
         if(currentUserStruct.username !== ""){
             setHasProfile(true)

@@ -10,7 +10,7 @@ const MessagePrevClient = ({activeAccount}) => {
 
     const fetchMessaged = async () =>{
         
-        const messages = await fetch(`https://blockchat-10f19-default-rtdb.firebaseio.com/users/${activeAccount}/messages/received.json`)
+        const messages = await fetch(`https://blockchat-10f19-default-rtdb.firebaseio.com/users/${activeAccount}/messages/received.json`, { next: { revalidate: 10 } })
         
         const data = await messages.json()
         

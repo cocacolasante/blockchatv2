@@ -67,6 +67,15 @@ describe("User Profile", () =>{
                 expect(user1Profile.nftTokenId).to.equal("1")
                 
             })
+            it("check contact was added and returned", async () =>{
+                await ProfileContract.connect(user1).addToContact(user2.address)
+                await ProfileContract.connect(user1).addToContact(deployer.address)
+                
+                const contactList = (await ProfileContract.returnContactList(user1.address))
+                expect(contactList[0]).to.equal(user2.address)
+                expect(contactList[1]).to.equal(deployer.address)
+                expect(contactList.length).to.equal(2)
+            })
         })
     })
 })

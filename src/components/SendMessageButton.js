@@ -8,7 +8,7 @@ import {AiOutlineClose} from "react-icons/ai"
 
 import { newSendfunction } from "@/app/utils/firestore";
 
-const SendMessageButton = ({activeAccount, }) => {
+const SendMessageButton = ({activeAccount, receiver="" }) => {
     const [reply, setReply] = useState("Send Message")
     const [isNewMessage, setIsNewMessage] = useState(false)
     const [toAddress, setToAddress] = useState()
@@ -39,7 +39,7 @@ const SendMessageButton = ({activeAccount, }) => {
 
     const handleInputValidation = (e) =>{
         e.preventDefault()
-        let toAddy = e.target.value.toString().toLowerCase()
+        let toAddy = receiver ||  e.target.value.toString().toLowerCase()
         
         
         setToAddress(toAddy)

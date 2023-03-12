@@ -33,7 +33,8 @@ const AddToContacts = ({account}) => {
     }
 
     const handleInput = (e)=>{
-       
+        
+        
         const contact = e.target.value
         
         setContactToAdd(contact)

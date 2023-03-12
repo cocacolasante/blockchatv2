@@ -4,6 +4,7 @@ import { ethers } from "ethers";
 import { PROFILEADDRESS } from "@/app/utils/Addresses";
 import profileAbi from "../../app/utils/abis/ProfileAbi.json"
 import AddToContacts from "./AddToContacts";
+import ContactCard from "./ContactCard";
 
 const DisplayUsersContacts = ({account}) => {
     const [activeAccount, setActiveAccount] = useState()
@@ -54,7 +55,10 @@ const DisplayUsersContacts = ({account}) => {
             console.log(contact)
             
             return(
-                <p key={i}>{contact}</p>
+                <>
+                    
+                <ContactCard key={i} address={contact} account={activeAccount} />
+                </>
             )
         })
         

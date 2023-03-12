@@ -13,9 +13,9 @@ const ContactCard = ({account, address}) => {
 
   return (
 
-    <div className="flex space-x-6 border border-gray-500 rounded-md">
+    <div className="flex space-x-6 border border-gray-500 rounded-md w-[65%]">
         <p>{address.toString()}</p>
-        <button className="border border-gray-400 rounded-md hover:shadow " onClick={handleOpenReply} >Send Message</button>
+        <button className="border border-gray-400 rounded-md hover:shadow " onClick={handleOpenReply} >Send New Message</button>
     {isOpen && (
         <SendReply activeAccount={account} receiver={address} />
     )}

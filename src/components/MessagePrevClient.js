@@ -53,7 +53,7 @@ const MessagePrevClient = ({activeAccount}) => {
       {inboxMessages && inboxMessages.map((message)=>{
         
         return(
-          <MessagePreviewCard key={message.key} urlLink={message.key} from={message.from} text={message.body} timestamp={message.createdAt} />
+          <MessagePreviewCard activeAccount={activeAccount} key={message.key} urlLink={message.key} from={message.from} text={message.body} timestamp={message.createdAt} />
         )
       })}
      

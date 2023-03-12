@@ -8,7 +8,7 @@ import {AiOutlineClose} from "react-icons/ai"
 
 import { newSendfunction } from "@/app/utils/firestore";
 
-const SendReply = ({activeAccount, receiver="" }) => {
+const SendReply = ({activeAccount, receiver="", buttonText="Send Message" }) => {
     const [reply, setReply] = useState("Send Message")
     const [isNewMessage, setIsNewMessage] = useState(false)
     const [toAddress, setToAddress] = useState()
@@ -39,7 +39,7 @@ const SendReply = ({activeAccount, receiver="" }) => {
     <div className="flex">
             
         <input className="" onChange={e=>setReply(e.target.value)} placeholder={reply}/>
-        <button onClick={e=>handleSendMessage(e)} type="submit" >Send Message</button>
+        <button onClick={e=>handleSendMessage(e)} type="submit" >{buttonText}</button>
     </div>
 </form>
   )

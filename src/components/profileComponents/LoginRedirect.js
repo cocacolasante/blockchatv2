@@ -51,7 +51,7 @@ const LoginRedirect = () => {
     }, [])
 
   return (
-    <div>
+    <div className="">
         {hasProfile ? <ProfilePage /> : <LoginPage /> }
     </div>
   )

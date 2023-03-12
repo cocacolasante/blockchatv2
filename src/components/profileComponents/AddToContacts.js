@@ -43,7 +43,7 @@ const AddToContacts = ({account}) => {
   return (
     <div className="space-x-2">
         <form onSubmit={handleAddContact}>
-        <h2>Add to Contacts</h2>
+        <h2 className="text-2xl">Add to Contacts</h2>
             <input onChange={handleInput} placeholder="Add Contact" />
             <button type="submit" onClick={e=>handleAddContact()} >Add To Contacts</button>
         </form>

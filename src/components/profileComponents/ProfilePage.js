@@ -89,8 +89,9 @@ const ProfilePage = () => {
     const displayProfile = () =>{
 
         return(
-            <div className="pt-6">
-                <h1 className="">{username}</h1>
+            <div className="pt-6 space-y-4">
+                <h1 className="text-3xl">Current Profile</h1>
+                <h2 className="">{username}</h2>
                 {!status ? setStatusInput() : <p>{status}</p> }
 
                 <DisplayUsersContacts account={activeAccount} />
@@ -102,7 +103,7 @@ const ProfilePage = () => {
 
 
   return (
-    <div>
+    <div className="pl-12">
     {username && displayProfile()}
         
     </div>
